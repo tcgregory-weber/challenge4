@@ -4,6 +4,7 @@ from django.db import models
 class Hobby(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
+    imageLink = models.CharField(max_length=500, default='https://static.thenounproject.com/png/583402-200.png')
 
     def __str__(self):
         return (self.name + ": " + self.description + "\n")
@@ -11,6 +12,7 @@ class Hobby(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
+    imageLink = models.CharField(max_length=500, default='https://static.thenounproject.com/png/583402-200.png')
 
     def __str__(self):
         return (self.name + ": " + self.description + "\n")

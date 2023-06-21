@@ -1,0 +1,9 @@
+{% extends 'PortfolioDatabase/base.html'%}
+{% block body %}
+    <h1>{{ item.name }}</h1>
+    <h2>{{ item.description }}</h2>
+    <div class="image-centered">
+        <img src="{{ item.imageLink }}" alt="{{ item.name }}" class="img-thumbnail">
+    </div>
+{% endblock %}
+```

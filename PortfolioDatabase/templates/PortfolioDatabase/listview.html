@@ -1,0 +1,26 @@
+{% extends 'PortfolioDatabase/base.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Database</title>
+</head>
+<body>
+    {% block body %}
+    {% for item in item_list %}
+    <ul>
+        <li>
+            <div>
+                <img src="{{ item.imageLink }}" alt="{{ item.name }}" class="img-thumbnail">
+            </div>
+            {% if 'portfolio' in request.path %}
+                <a href="{% url 'port_db:portfolio_detail' item.id %}">{{ item.name }}</a>
+            {% elif 'hobbies' in request.path %}
+                <a href="{% url 'port_db:hobby_detail' item.id %}">{{ item.name }}</a>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>

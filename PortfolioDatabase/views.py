@@ -1,19 +1,23 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Hobby, Project
+from django.template import loader
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Hello, world! " + 
-        "My name is Tyler Gregory, and I am a senior here at WSU.")
+    return render(request, 'PortfolioDatabase/index.html')
 
 def hobbies(request):
-    hobbies = Hobby.objects.all()
-    return HttpResponse(hobbies)
+    return render(request, 'PortfolioDatabase/listview.html', {'item_list': Hobby.objects.all()})
 
 def portfolio(request):
-    projects = Project.objects.all()
-    return HttpResponse(projects)
+    return render(request, 'PortfolioDatabase/listview.html', {'item_list': Project.objects.all()})
 
 def contact(request):
-    return HttpResponse("tylergregory1@mail.weber.edu")
+    return render(request, 'PortfolioDatabase/contact.html')
+
+def hobby_detail(request, hobby_id):
+    return render(request, 'PortfolioDatabase/detail.html', {'item': Hobby.objects.get(id=hobby_id)})
+
+def project_detail(request, project_id):
+    return render(request, 'PortfolioDatabase/detail.html', {'item': Project.objects.get(id=project_id)})
