@@ -7,6 +7,18 @@
 </head>
 <body>
     {% block body %}
+    {% if user.is_authenticated %}
+    <ul>
+        <li>
+            <div>
+                 <!-- If logged in, add new item button -->
+
+                    <a href="{% url 'port_db:addProject' %}" class="btn btn-primary">Add New Project</a>
+
+            </div>
+        </li>
+    </ul>
+    {% endif %}
     {% for item in item_list %}
     <ul>
         <li>
@@ -15,6 +27,15 @@
             </div>
             {% if 'portfolio' in request.path %}
                 <a href="{% url 'port_db:portfolio_detail' item.id %}">{{ item.name }}</a>
+                {% if user.is_authenticated %}
+                    <!-- EDIT BUTTON -->
+                    <a href="{% url 'port_db:updateProject' item.id %}" class="btn btn-success">Edit</a>
+                    <!-- DELETE BUTTON -->
+                    <form action="{% url 'port_db:deleteProject' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                {% endif %}
             {% elif 'hobbies' in request.path %}
                 <a href="{% url 'port_db:hobby_detail' item.id %}">{{ item.name }}</a>
             {% endif %}

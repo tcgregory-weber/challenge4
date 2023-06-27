@@ -16,3 +16,11 @@ class Project(models.Model):
 
     def __str__(self):
         return (self.name + ": " + self.description + "\n")
+
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    message = models.TextField()
+
+    def __str__(self):
+        return (self.name + ": " + self.email + ": " + self.message + "\n")

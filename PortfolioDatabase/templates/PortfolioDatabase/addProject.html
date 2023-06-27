@@ -1,11 +1,11 @@
 {% extends "PortfolioDatabase/base.html" %}
-{% block title %}Contact{% endblock %}
+{% block title %}Add Project{% endblock %}
 {% block body %}
-    <h1>Send me a message!</h1>
+    <h1>Add a new project</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">Send</button>
+        <button type="submit">Add</button>
     </form>
 {% endblock %}
 ```
